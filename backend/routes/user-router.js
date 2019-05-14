@@ -10,6 +10,9 @@ router.post('/signup', userController.signup);
 router.post('/edit', userController.update);
 router.use('/viewAllFriends', userController.viewAllFriends);
 router.post('/sendFriendRequest', userController.sendFriendRequest);
+router.post('/acceptFriendRequest', userController.acceptFriendRequest);
+router.post('/removeFriendRequest', userController.removeFriendRequest);
+router.post('/removeFriend', userController.removeFriend);
 router.use('/all', userController.viewAll);
 
 router.use('/test', userController.test);

@@ -67,9 +67,9 @@ exports.viewAll = (req, res) => {
 };
 
 exports.sendFriendRequest = (req, res) => {
-  const input = req.body
-  const sender = req.body.senderID
-  User.updateOne({_id:input.userID},{$push: {friendRequests: sender}},(err,user)=>{
+  const userID = req.body.userID
+  const friendID = req.body.friendID
+  User.updateOne({_id:friendID},{$push: {friendRequests: userID}},(err,user)=>{
     if(err){
       res.send(err)
     }else
@@ -77,5 +77,59 @@ exports.sendFriendRequest = (req, res) => {
   })
 }
 
+exports.acceptFriendRequest = (req,res) =>{
+  const userID = req.body.userID
+  const sender = req.body.senderID
+  User.updateOne({_id:userID},{$pull: {friendRequests: sender}}, (err,user)=>{
+    if(err){
+      res.send(err)
+    }else{
+      User.updateOne({_id:userID}, {$push: {friends: sender}}, (err,user)=>{
+        if(err){
+          res.send(err)
+        }else{
+        User.updateOne({_id:sender}, {$push: {friends: userID}}, (err,user)=>{
+          if(err){
+            res.send(err)
+          }else{
+            res.send("Accepted Friend reqeust")
+          }
+        })
+        }
+      })
+    }
+  })
+}
+
+exports.removeFriendRequest = (req,res) =>{ 
+  const userID = req.body.userID
+  const sender = req.body.senderID
+  User.updateOne({_id:userID},{$pull: {friendRequests: sender}}, (err,user)=>{
+    if(err){
+      res.send(err)
+    }else{
+      res.send("removed friend request")
+    }
+  })
+}
+
+
+exports.removeFriend = (req,res)=>{
+  const userID = req.body.userID
+  const friendID = req.body.friendID
+  User.updateOne({_id:userID},{$pull: {friends: friendID}}, (err,user)=>{
+    if(err){
+      res.send(err)
+    }else{
+      User.updateOne({_id:friendID},{$pull: {friends: userID}}, (err,user)=>{
+        if(err){
+          res.send(err)
+        }else{
+          res.send("friendship over")
+        }
+      })
+    }
+  })
+}
 
 
