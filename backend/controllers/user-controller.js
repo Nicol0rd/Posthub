@@ -32,7 +32,7 @@ exports.login = (req, res) => {
 
 exports.update = (req,res)=>{
   const input = req.body
-  User.update({_id: input.userID}, {$set: input}, (err, user) => {
+  User.updateOne({_id: input.userID}, {$set: input}, (err, user) => {
     if (err) {
       res.send('Error updating user.');
     } else {

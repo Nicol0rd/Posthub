@@ -7,8 +7,7 @@ const postSchema = new Schema(
 		authorID: {	type: ObjectId, required: true },
 		wall: { type: ObjectId, required: true },
 		content: { type: String, required: true },
-		timestamp: { type: Date, required: true, default: Date.now },
-		comments: { type: String }
+		timestamp: { type: Date, required: true, default: Date.now }
 	},
 	{
 		collection: 'post'	

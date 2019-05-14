@@ -23,7 +23,7 @@ exports.create = (req,res)=>{
 
 exports.update = (req, res) => {
   const input = req.body;
-  Comment.update({_id: input.commentID}, {$set: input}, (err, comment) => {
+  Comment.updateOne({_id: input.commentID, authorID:input.authorID}, {$set: input}, (err, comment) => {
     if (err) {
       res.send('Error updating comment.');
     } else {
@@ -34,7 +34,7 @@ exports.update = (req, res) => {
 
 exports.delete = (req,res) =>{
 
-	Comment.findByIdAnRemove({_id: commentID, authorID:req.body.authorID}, (err,comment) =>{
+	Comment.findByIdAndRemove({_id: commentID, authorID:req.body.authorID}, (err,comment) =>{
 		if(!err){
 			res.send('comment is deleted')
 		}else
