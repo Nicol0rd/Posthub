@@ -129,16 +129,105 @@
 			"response": []
 		},
 		{
-			"name": "post - create",
+			"name": "post - create in own wall",
 			"request": {
-				"method": "GET",
-				"header": [],
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
 				"body": {
-					"mode": "raw",
-					"raw": ""
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "authorID",
+							"value": "5cdab2d0aea90c1a02ad5959",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "hello",
+							"type": "text"
+						},
+						{
+							"key": "userID",
+							"value": "5cdab2d0aea90c1a02ad5959",
+							"type": "text"
+						},
+						{
+							"key": "timestamp",
+							"value": "",
+							"type": "text"
+						}
+					]
 				},
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:8080/post/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"post",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post - create in friend wall",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "authorID",
+							"value": "5cdab2d0aea90c1a02ad5959",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "hello",
+							"type": "text"
+						},
+						{
+							"key": "userID",
+							"value": "5cdab2d0aea90c1a02ad5959",
+							"type": "text"
+						},
+						{
+							"key": "timestamp",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/post/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"post",
+						"create"
+					]
 				}
 			},
 			"response": []
@@ -159,7 +248,52 @@
 			"response": []
 		},
 		{
+			"name": "post - edit",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post - all by user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "post - all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post - all in wall",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -265,6 +399,21 @@
 		},
 		{
 			"name": "user - remove friend",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post - delete",
 			"request": {
 				"method": "GET",
 				"header": [],
