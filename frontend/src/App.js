@@ -1,21 +1,18 @@
+import { BrowserRouter as Router, Route} from 'react-router-dom'; 
 import React, { Component } from 'react';
-import Home from './Pages/Home';
-import Wall from './Pages/Wall';
-import NavBar from './Pages/NavBar';
-import {
-  BrowserRouter as Router,
-  withRouter,
-  Switch,
-  Route,
-  Redirect
-} from 'react-router-dom';
+import LandingPage from './Pages/LandingPage';
+import HomePage from './Pages/HomePage';
 
 class App extends Component {
   render() {
     return (
       <div>
-      	<Wall/>
-      	<NavBar/>
+        <Router>
+          <div>
+          <Route exact={true} path = "/" component={LandingPage}/>
+          <Route exact={true} path = "/home" component={HomePage}/>    
+          </div>
+        </Router>
       </div>
     );
   }

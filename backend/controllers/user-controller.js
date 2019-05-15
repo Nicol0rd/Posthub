@@ -29,7 +29,6 @@ exports.login = (req, res) => {
   });
 };
 
-
 exports.update = (req,res)=>{
   const input = req.body
   User.updateOne({_id: input.userID}, {$set: input}, (err, user) => {
@@ -100,6 +99,7 @@ exports.acceptFriendRequest = (req,res) =>{
     }
   })
 }
+
 
 exports.removeFriendRequest = (req,res) =>{ 
   const userID = req.body.userID

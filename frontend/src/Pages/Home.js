@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Accordion, Segment, Input, Button, Icon, Image} from 'semantic-ui-react';
+import Axios from 'axios';
 
 class Home extends Component {
 
@@ -9,33 +10,28 @@ constructor(){
 		  	email:"",
 		  	name:"",
 			pword:"",
-			pword2:"",
 			date:"dd/mm/yyyy"
 		  }
   		this.handleEmail= this.handleEmail.bind(this);
 		this.handleName = this.handleName.bind(this);
 		this.handlePword = this.handlePword.bind(this);
-		this.handlePword2 = this.handlePword2.bind(this);
 		this.handleDate = this.handleDate.bind(this);
 		this.checkError = this.checkError.bind(this);
 	}
 	handleEmail(e){
-		this.setState({email: e.target.value, check:0})
+		this.setState({email: e.target.value})
 	}
 	handleName(e){
-		this.setState({name: e.target.value, check:0})
+		this.setState({name: e.target.value})
 	}
 	handlePword(e){
-		this.setState({pword: e.target.value, check:0})
+		this.setState({pword: e.target.value})
 	}
 	handlePword2(e){
-		this.setState({pword2: e.target.value, check:0})
+		this.setState({pword2: e.target.value})
 	}
 	handleDate(e){
-		this.setState({date: e.target.value, check:0})
-	}
-	checkError(e){
-		this.setState({check: 1})
+		this.setState({date: e.target.value})
 	}
 	handleClick = (e, titleProps) => {
     const { index } = titleProps
@@ -52,7 +48,7 @@ constructor(){
     	<div>
     	<Image
 			src='https://i.ibb.co/qxzZPkQ/posthub.png'
-			href='http://google.com'
+			href='http://localhost:3000'
 			target='_blank'
 			styled style={logo}
   		/>
@@ -66,7 +62,7 @@ constructor(){
 				value = {this.state.email}
 				onChange = {this.handleEmail} 
 			/>
-			{(this.state.check===1)?(this.state.email ==="")?<PrintError data="Email is required"/>:"":""}
+			{(this.state.email ==="")?<PrintError data="Email is required"/>:"":""}
 			<br/>
 			{/*Password*/}
 			<Input 
@@ -75,7 +71,7 @@ constructor(){
 				value = {this.state.pword}
 				onChange = {this.handlePword} 
 			/>
-				{(this.state.check===1)?(this.state.pword ==="")?<PrintError data="Password is required"/>:"":""}
+				{(this.state.pword ==="")?<PrintError data="Password is required"/>:"":""}
 			<br/>
 			{/*Submit button*/}
 			<Button 
@@ -93,7 +89,7 @@ constructor(){
 				value = {this.state.email}
 				onChange = {this.handleEmail} 
 			/>
-			{(this.state.check===1)?(this.state.email ==="")?<PrintError data="Email is required"/>:"":""}
+			{(this.state.email ==="")?<PrintError data="Email is required"/>:"":""}
 			<br/>
 			{/*Name*/}
 		  	<Input
@@ -101,7 +97,7 @@ constructor(){
 				value = {this.state.name}
 				onChange = {this.handleName} 
 			/>
-			{(this.state.check===1)?(this.state.name ==="")?<PrintError data="Name is required"/>:"":""}
+			{(this.state.name ==="")?<PrintError data="Name is required"/>:"":""}
 			<br/>
 			{/*Password*/}
 		  	<Input 
@@ -110,17 +106,8 @@ constructor(){
 				value = {this.state.pword}
 				onChange = {this.handlePword} 
 			/>
-				{(this.state.check===1)?(this.state.pword ==="")?<PrintError data="Password is required"/>:"":""}
+				{(this.state.pword ==="")?<PrintError data="Password is required"/>:"":""}
 				<br/>
-		  	{/*Repeat Password*/}
-		  	<Input
-		  		type="password"
-		  		label="Repeat Password"
-		  		value = {this.state.pword2}
-				onChange = {this.handlePword2}
-		  	/>
-		  	{(this.state.check===1)?(this.state.pword2 ==="")?<PrintError data="Please repeat password"/>:(this.state.pword === this.state.pword2)?"":<PrintError data="Passwords do not match"/>:""}
-		  	<br/>
 		  	{/*Birthday*/}
 		  	<Input 
 		  		type="date" 
@@ -128,11 +115,11 @@ constructor(){
 		  		value = {this.state.date}
 		  		onChange = {this.handleDate}
 		  	/>
-		  	{(this.state.check===1)?(this.state.date ==="dd/mm/yyyy")?<PrintError data="Birthdate is required"/>:"":""}
+		  	{(this.state.date ==="dd/mm/yyyy")?<PrintError data="Birthdate is required"/>:"":""}
 		  	<br/>
 		  	<Button 
 				label="Submit"
-				onClick={this.checkError}
+				onClick={this.handleClick}
 			/>
 		  </Accordion.Content>
 		</Accordion>
@@ -146,6 +133,21 @@ class PrintError extends Component{
 		return(
 			<span className="error-message">{this.props.data}</span>
 		);
+	}
+}
+
+class Login extends Component{
+	constructor(props){
+		super(props);
+		Autobind(this);
+		this.state = {
+			firstName : '',
+			lastName : '',
+			email : '',
+			password : '',
+			confirmPassword	: '',
+			isTeacher: ''
+		}
 	}
 }
 
